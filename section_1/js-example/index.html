@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 class="advice"></h1>
+    <button class="btn">Get Advice</button>
+    <p>
+        You have read <strong class="count">0</strong> peaces of advice
+    </p>
+    <script type="text/javascript">
+        const adviceEl = document.querySelector('.advice');
+        const btnEl = document.querySelector('.btn');
+        const countEl = document.querySelector('.count');
+    
+        const getAdvice = async function() {
+            const res = await fetch('https://api.adviceslip.com/advice');
+            const data = await res.json();
+            
+            advice = data.slip.advice;
+            count = count + 1;
+    
+            countEl.textContext = count;
+            adviceEl.textContext = advice;
+        };
+    
+        let count = 0
+        let advice;
+        getAdvice();
+    
+        btnEl.addEventListener('click', getAdvice);
+    </script>
+</body>
+</html>
